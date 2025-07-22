@@ -36,7 +36,7 @@ const Button = ({ children, className = '', variant = 'primary', ...props }) => 
   );
 };
 
-const BASE_URL = "https://task-28-a.onrender.com/api/todos";
+const BASE_URL = "https://task-28-a.vercel.app/api/todos";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -105,7 +105,12 @@ export default function App() {
   };
 
   useEffect(() => {
-    fetchTodos();
+    const timeout = setTimeout(()=> {
+      alert("It might take some time please wait after adding your todo");
+    }, 3000);
+    fetchTodos().finally(() => {
+      clearTimeout(timeout);
+    });
   }, []);
 
   const completedCount = todos.filter(t => t.status === 'completed').length;
