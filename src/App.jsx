@@ -19,6 +19,8 @@ const Input = ({ className = "", ...props }) => (
   />
 );
 
+const BASEURL = import.meta.env.BASE_URL;
+
 const Button = ({ children, className = '', variant = 'primary', ...props }) => {
   const variants = {
     primary: "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-purple-500/25",
@@ -36,7 +38,7 @@ const Button = ({ children, className = '', variant = 'primary', ...props }) => 
   );
 };
 
-const BASE_URL = "https://task-28-a.vercel.app/api/todos";
+const BASE_URL = BASEURL;
 
 export default function App() {
   const [todos, setTodos] = useState([]);
