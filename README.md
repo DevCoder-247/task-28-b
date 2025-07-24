@@ -7,4 +7,5 @@ https://github.com/DevCoder-247/task-28-a
 https://task-28-2nl1bhqwg-abhays-projects-596787af.vercel.app/
 
 ## Deployed Backend Url  
-https://task-28-a.onrender.com/api/todos
+https://task-28-a.vercel.app/api/todos
+
