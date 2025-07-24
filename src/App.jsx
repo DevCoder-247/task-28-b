@@ -38,7 +38,6 @@ const Button = ({ children, className = '', variant = 'primary', ...props }) => 
   );
 };
 
-const BASE_URL = BASEURL;
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -46,7 +45,7 @@ export default function App() {
   const [isAdding, setIsAdding] = useState(false);
 
   const fetchTodos = async () => {
-    const res = await axios.get(BASE_URL);
+    const res = await axios.get(BASEURL);
     setTodos(res.data);
   };
 
@@ -55,7 +54,7 @@ export default function App() {
     
     setIsAdding(true);
     try {
-      await axios.post(BASE_URL, { title });
+      await axios.post(BASEURL, { title });
       setTitle("");
       fetchTodos();
     } finally {
@@ -74,13 +73,13 @@ export default function App() {
     }
     
     setTimeout(async () => {
-      await axios.delete(BASE_URL + "/" + `${id}`);
+      await axios.delete(BASEURL + "/" + `${id}`);
       fetchTodos();
     }, 300);
   };
 
   const updateStatus = async (id, status) => {
-    await axios.put(BASE_URL + "/" + `${id}`, { status });
+    await axios.put(BASEURL + "/" + `${id}`, { status });
     fetchTodos();
   };
 
