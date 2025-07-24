@@ -19,8 +19,6 @@ const Input = ({ className = "", ...props }) => (
   />
 );
 
-const BASEURL = import.meta.env.BASE_URL;
-
 const Button = ({ children, className = '', variant = 'primary', ...props }) => {
   const variants = {
     primary: "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-purple-500/25",
@@ -38,6 +36,10 @@ const Button = ({ children, className = '', variant = 'primary', ...props }) => 
   );
 };
 
+// const BASE_URL = "https://task-28-a.vercel.app/api/todos";
+// const BASE_URL=import.meta.env.BASEURL;
+const BASE_URL = import.meta.env.VITE_BASEURL;
+
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -45,7 +47,7 @@ export default function App() {
   const [isAdding, setIsAdding] = useState(false);
 
   const fetchTodos = async () => {
-    const res = await axios.get(BASEURL);
+    const res = await axios.get(BASE_URL);
     setTodos(res.data);
   };
 
@@ -54,7 +56,7 @@ export default function App() {
     
     setIsAdding(true);
     try {
-      await axios.post(BASEURL, { title });
+      await axios.post(BASE_URL, { title });
       setTitle("");
       fetchTodos();
     } finally {
@@ -73,13 +75,13 @@ export default function App() {
     }
     
     setTimeout(async () => {
-      await axios.delete(BASEURL + "/" + `${id}`);
+      await axios.delete(BASE_URL + "/" + `${id}`);
       fetchTodos();
     }, 300);
   };
 
   const updateStatus = async (id, status) => {
-    await axios.put(BASEURL + "/" + `${id}`, { status });
+    await axios.put(BASE_URL + "/" + `${id}`, { status });
     fetchTodos();
   };
 
